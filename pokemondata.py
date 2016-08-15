@@ -5,6 +5,10 @@ import json
 import time
 from ast import literal_eval
 
+# import Pokemon Go API lib
+from pgoapi import pgoapi
+from pgoapi import utilities as util
+
 class PokemonData(dict):   
     #A dictionary for all of the key information used in pokeIV
     def __init__(self, pokedex, moves, types, family, cost, config, api, login=False):
@@ -24,6 +28,7 @@ class PokemonData(dict):
         self["evolve_counts"] = dict()
         self["needed_counts"] = dict()
         self["unique_counts"] = dict()
+        self["request"] = None
         if login:
             #updates inventory and player info
             self.login()
@@ -52,17 +57,29 @@ class PokemonData(dict):
         self.set_evolve()
         #anything that's not in best or evolve should be transferred
         self["transfer"] = sorted(list(set(self["all"]) - set(self["best"]) - set(self["evolve"])), key=lambda x: x.iv)
+    
+    def get_request(self):
+        if self["request"] is None:
+            self["request"] = self["api"].create_request()
+        return self["request"]
         
+    def call_request(self):
+        if self["request"] is not None:
+            return self["request"].call()
+        else:
+            return None
+    
     def update_player_and_inventory(self):
         # add inventory to rpc call
-        self["api"].get_inventory()
+        self.get_request().get_inventory()
         # add player to rpc call
-        self["api"].get_player()
-        response = self["api"].call()
-        self["player"] = self.parse_player(response)
-        items = self.parse_inventory(response)
-        self["candy"] = items["candy"]
-        self["all"] = items["pokemon"]
+        self.get_request().get_player()
+        response = self.call_request()
+        if response is not None:
+            self["player"] = self.parse_player(response)
+            items = self.parse_inventory(response)
+            self["candy"] = items["candy"]
+            self["all"] = items["pokemon"]
     
     def update_inventory(self):
         items = self.parse_inventory(self.get_inventory())
@@ -302,32 +319,38 @@ class PokemonData(dict):
         return  str(items[0]).join(vals)[:12]  
     
     def transfer_pokemon(self, pokemon):
-        self["api"].release_pokemon(pokemon_id=self.get_id(pokemon))
-        #self["api"].call()
+        self.get_request().release_pokemon(pokemon_id=self.get_id(pokemon))
         self.update()
 
     def evolve_pokemon(self, pokemon):
-        self["api"].evolve_pokemon(pokemon_id=self.get_id(pokemon))
-        #self["api"].call()
+        self.get_request().evolve_pokemon(pokemon_id=self.get_id(pokemon))
         self.update()
         
     def upgrade_pokemon(self, pokemon):
-        self["api"].upgrade_pokemon(pokemon_id=self.get_id(pokemon))
-        #self["api"].call()
+        self.get_request().upgrade_pokemon(pokemon_id=self.get_id(pokemon))
         self.update()
     
     def rename_pokemon(self, pokemon):
         name = self.get_new_nickname(pokemon)
-        self["api"].nickname_pokemon(pokemon_id=self.get_id(pokemon),nickname=str(name))
-        #self["api"].call()
+        self.get_request().nickname_pokemon(pokemon_id=self.get_id(pokemon),nickname=str(name))
         self.update()
         
     def login(self):
+        if self["config"]["location"] is None:
+            print("Required location not provided")
+            return
+        #set location
+        position = util.get_pos_by_name(self["config"]["location"])
+        if not position:
+            print("Invalid location")
+            return
+        self["api"].set_position(*position)
         # login
-        if not self["api"].login(self["config"]["auth_service"], self["config"]["username"], self["config"]["password"]):
+        if not self["api"].login(self["config"]["auth_service"], self["config"]["username"], self["config"]["password"], app_simulation = True):
             print("error logging in...")
-        self.update_player_and_inventory()
-        self.init_info()
+        else:
+            self.update_player_and_inventory()
+            self.init_info()
         
     def update(self):
         self.update_player_and_inventory()
