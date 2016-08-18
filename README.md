@@ -33,6 +33,11 @@ sudo apt-get install python python-tk
 pip install -r requirements.txt
 ```
 
+### Cofiguration
+
+The following minimal configuration is necessary in order to run PokeIV:
+- **Location:** Just enter a normal postal address. It is going to be converted into coordinates before the request is sent
+
 # Screenshot
 ![pokeIV screen shot](./screenshot.jpg "Screenshot")
 
