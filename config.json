@@ -5,7 +5,7 @@
   
   "password": "",
   
-  "location": "",               "_comment": "Physical location that your character will be logged in from", 
+  "location": "",               "_comment": "Physical location that your character will be logged in from. Just enter an postal address the same way one does on google maps.", 
   
   "language": "",               "_comment": "Language used for pokemon names. Default is English. German is the only other language currently supported",
   
