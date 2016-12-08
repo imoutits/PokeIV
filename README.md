@@ -25,9 +25,18 @@ For Ubuntu run:
 ```
 sudo apt-get install python python-tk
 ```
+For Windows, something like this:
+```
+Download and install C compiler and redistributable installers from Visual Studio downloads section.
+Download and install Python 3.5 or higher and add to PATH!
+Use pip to install mycryptodomex with --no-use-wheel.
+Run python setup.py install, from within the pgoapi folder if after installation PokeIV whines about installing protobuf!
+```
 
 ### Installation
 ```
+git submodule init
+git submodule update
 pip install -r requirements.txt
 ```
 
