@@ -1,5 +1,5 @@
 {
-  "auth_service": "google", 	"_comment": "('ptc' or 'google')",
+  "auth_service": "ptc", 	"_comment": "('ptc' or 'google')",
   
   "username": "",
   
