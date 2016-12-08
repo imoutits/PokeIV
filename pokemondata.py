@@ -1,4 +1,4 @@
-#This software uses pgoapi - see pgoapi-license.txt
+#This software uses pgoapi - see pgoapi/LICENSE.txt
 
 import re
 import json

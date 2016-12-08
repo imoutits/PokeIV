@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#This software uses pgoapi - see pgoapi-license.txt
+#This software uses pgoapi - see pgoapi/LICENSE.txt
 
 import os
 import re
