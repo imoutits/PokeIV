@@ -19,8 +19,6 @@ PokeIV provides an interface to manage your pokemon in Pokemon Go.
   * delays for transferring, evolution and renaming to avoid suspicious activity
   
 # Requirements
-Python TK:
-
 For Ubuntu run:
 ```
 sudo apt-get install python python-tk
