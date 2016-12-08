@@ -1,10 +1,10 @@
 # PokeIV
-Pokemon management tool for Go using [pgoapi](https://github.com/pogodevorg/pgoapi).
+Pokemon GO management tool using [pgoapi](https://github.com/pogodevorg/pgoapi).
 
 # About
 PokeIV provides an interface to manage your pokemon in Pokemon Go. 
 
-Current features:
+# Current features
 * Player information
 * Batch pokemon transfering. 
 * Batch pokemon evolution.
@@ -18,10 +18,10 @@ Current features:
   * White/black lists to only display the pokemon you want to
   * delays for transferring, evolution and renaming to avoid suspicious activity
   
-# Linux / other
-Requires Python 2/3
+# Requirements
+Python TK:
 
-E.g. in Ubuntu run:
+For Ubuntu run:
 ```
 sudo apt-get install python python-tk
 ```
