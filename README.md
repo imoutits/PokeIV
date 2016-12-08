@@ -1,8 +1,9 @@
 # PokeIV
-Pokemon management tool for Go using [tejado's pgoapi API](https://github.com/tejado/pgoapi).
+Pokemon management tool for Go using [pgoapi](https://github.com/pogodevorg/pgoapi).
 
 # About
 PokeIV provides an interface to manage your pokemon in Pokemon Go. 
+
 Current features:
 * Player information
 * Batch pokemon transfering. 
@@ -17,14 +18,11 @@ Current features:
   * White/black lists to only display the pokemon you want to
   * delays for transferring, evolution and renaming to avoid suspicious activity
   
-# Windows
-There is now an executable distribution of PokeIV located in the 'dist' directory. This executable was built using py2exe and does not need an external Python installation to run. It was built on Windows 10 and has not been tested on other versions.
-
 # Linux / other
 Requires Python 2/3
 
 E.g. in Ubuntu run:
-```bash
+```
 sudo apt-get install python python-tk
 ```
 
@@ -35,4 +33,3 @@ pip install -r requirements.txt
 
 # Screenshot
 ![pokeIV screen shot](./screenshot.jpg "Screenshot")
-
