@@ -37,7 +37,7 @@ for folder,folder_name,files in os.walk(path):
 mydata.extend(('families.tsv','evolves.tsv','german-names.tsv','config.json'))
 
 setup(data_files=mydata,
-      windows = [{'script': "pokeIV-gui.py"}],
+      windows = [{'script': "pokeIV.py"}],
       zipfile = None,
 	  options= {
         "py2exe":{

@@ -1,4 +1,4 @@
-#This software uses pgoapi - see pgoapi-license.txt
+#This software uses pgoapi - see pgoapi/LICENSE.txt
 
 import re
 import json
@@ -8,6 +8,8 @@ from ast import literal_eval
 # import Pokemon Go API lib
 from pgoapi import pgoapi
 from pgoapi import utilities as util
+
+from time import time, sleep
 
 class PokemonData(dict):   
     #A dictionary for all of the key information used in pokeIV
@@ -29,6 +31,8 @@ class PokemonData(dict):
         self["needed_counts"] = dict()
         self["unique_counts"] = dict()
         self["request"] = None
+	self["time"] = 0
+
         if login:
             #updates inventory and player info
             self.login()
@@ -64,9 +68,14 @@ class PokemonData(dict):
         return self["request"]
         
     def call_request(self):
+        while time() - self["time"] < 5:
+            sleep(1)
+
         if self["request"] is not None:
+            self["time"] = time()
             return self["request"].call()
         else:
+            self["time"] = time()
             return None
     
     def update_player_and_inventory(self):
