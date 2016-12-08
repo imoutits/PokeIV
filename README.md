@@ -1,3 +1,4 @@
+
 # PokeIV
 Pokemon GO management tool using [pgoapi](https://github.com/pogodevorg/pgoapi).
 
@@ -36,6 +37,11 @@ Run python setup.py install, from within the pgoapi folder if after installation
 git submodule init
 git submodule update
 pip install -r requirements.txt
+```
+
+### Execution
+```
+python pokeIV.py
 ```
 
 # Screenshot
