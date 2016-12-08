@@ -9,7 +9,7 @@
   
   "language": "",               "_comment": "Language used for pokemon names. Default is English. German is the only other language currently supported",
   
-  "minimumIV": "80",  			"_comment": "IV percentage--everything above is kept regardless of duplication",
+  "minimumIV": "66",  			"_comment": "IV percentage--everything above is kept regardless of duplication",
   
   "hard_minimum": "False", 		"_comment": "transfer candidates will be selected if they are below minimumIV (will transfer unique pokemon)",
   
@@ -36,7 +36,7 @@
   
   "display_nickname": "False",	"_comment": "Displays the pokemon's nickname instead of the pokemon type. There's a checkbox that makes this more useful",
   
-  "rename_format": "{-}{iv.0}{atk}{def}{sta}",	"_comment":"renaming format: first item is the delimiter--there must be one.",
+  "rename_format": "{-}{atk}{def}{sta}{iv.1}",	"_comment":"renaming format: first item is the delimiter--there must be one.",
 												"_comment":"{iv.2} specifies that it will use 2 decimal places. The number following the period is mandatory (can be 0)",
 												"_comment":"example: 13 atk, 13 def, 14 sta, 88.8888.. iv with default format becomes ==> '13-13-14-88.88' ",
 												"_comment":"{pokemon} is also a vailable and will display the type of pokemon.",
